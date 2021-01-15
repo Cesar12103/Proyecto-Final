@@ -1,0 +1,179 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int ingresocontrasena();
+void bienvenida();
+void menu();
+void eleccion();
+void informacionHospital();
+ 
+int main()
+{
+	setlocale(LC_ALL,"");
+	
+
+	/*Si la función ingresocontrasena regresa un 1 deja pasar a la siguiente parte del programa, en caso de no ser asi,
+	termina el programa, obligando al usuario que ejecute de nuevo*/
+	if(ingresocontrasena()==1) 
+	{
+	bienvenida();
+	eleccion();
+	}
+}
+
+
+int ingresocontrasena() //Función para ingresar contraseña al inicio del programa
+{	
+	/*Declaración de variables para conteo y límite de intentos*/
+	int pass{0};
+	int intentos{3}; 
+	const int clavecorrecta{1234};
+	
+	do
+	{
+		/*Ingreso de la contraseña*/
+		cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+		cout<<"Contraseña: ";
+		cin>>pass;
+		cout<<endl;
+		
+		/*Si la variable pass no coincide con la clave correcta entonces imprime el numero de intento 
+		y una advertencia, se suma en la variable intentos*/
+		if(pass!=clavecorrecta) 
+		{
+			cout<<"\t\t\t\t\t";
+			cout<<"CONTRASEÑA INCORRECTA"<<endl;
+			cout<<"\t\t\t\t\t";
+			cout<<"INTENTOS RESTANTES: "<<intentos-1<<endl;
+			intentos--;
+		}
+		
+		/*Se establece un límite de intentos y al llegar a es cantidad, 
+		se repite el proceso hasta ingresar la contraseña correcta*/
+		if(intentos==0)
+		{
+			cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+			cout<<"Límite de Intentos alcanzado, Intente de nuevo"<<endl;
+			intentos=3;
+			system("pause");
+			system("cls");
+		}
+	}
+	
+	/*Lo anterior se repite mientras la variable pass no sea igual a la clave correcta,
+	cuando es igual sale del ciclo y regresa un 1 al main dando paso a la siguiente parte
+	del programa*/
+	while (pass!=clavecorrecta);
+	system("cls");
+	cout<<"Contraseña correcta"<<endl;
+	return 1;
+}
+
+
+/*Función que desplega o imprime un mensaje de Bienvenida al usuario*/
+void bienvenida()
+{
+	cout<<"\t\t\t\t\t _________________________________________________________________________________________ \n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                          		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                     BIENVENIDOS AL                                      |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                                     HOSPITAL COVID                                      |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                               DONDE ADMINISTRAMOS A CADA                                |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                           UNO DE NUESTROS PACIENTES Y CON LA                            |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                    ORGANIZACIÓN QUE CUALQUIER HOSPITAL DESEARÍA TENER                   |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|_________________________________________________________________________________________|\n";
+	cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+	system("Pause");
+	system("cls");
+}
+
+/*Función que imprime el menú con las diferentes operaciones disponibles*/ 
+void menu()
+{
+	cout<<"\t\t\t\t\t _________________________________________________________________________________________ \n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                          		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                      ELIJA UNA OPCIÓN (1-4)                         		          |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                      1. INFORMACIÓN DEL HOSPITAL                                        |\n";
+	cout<<"\t\t\t\t\t|                      2. REGISTRO DE PACIENTE                                            |\n";
+	cout<<"\t\t\t\t\t|                      3. HISTORIAL DEL PACIENTE                                          |\n";
+	cout<<"\t\t\t\t\t|                      4. FIN DEL PROGRAMA                                                |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|_________________________________________________________________________________________|\n";
+	cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+}
+
+/*Función que sirve para ingresar el número de la operación que se desea emplear 
+mediante un switch*/ 
+void eleccion()
+{
+	int operacion{0};
+	
+	do
+	{
+	menu();
+	cout<<"Seleccione la operación que desea ejecutar: ";
+	cin>>operacion;
+	cout<<endl;
+	system("cls");
+
+	switch(operacion)
+		{
+			case 1: 
+					informacionHospital(); //Invoca a la función con del proyecto en caso de escoger el número 1
+					break;
+			case 2: 
+					cout<<"Caso 2"<<endl; 
+					break;
+			case 3:
+					cout<<"Caso 3"<<endl;
+					break;
+			case 4:
+					break;
+		}
+	}
+	while(operacion!=4);
+	//return 0;
+}
+
+void informacionHospital()
+{
+	cout<<"\t\t\t\t\t _________________________________________________________________________________________ \n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                     PROYECTO ADMINISTRACIÓN HOSPITAL COVID                      	  |\n";
+	cout<<"\t\t\t\t\t|                                               		                          |\n";
+	cout<<"\t\t\t\t\t|                  Creado y Desarrollado por:                 		                  |\n";
+	cout<<"\t\t\t\t\t|                  - Archunda Bazán Aarón Antonio   		                          |\n";
+	cout<<"\t\t\t\t\t|                  - Guerrero Vélez Eliseo Milton                                         |\n";
+	cout<<"\t\t\t\t\t|                  - Hernández Vázquez César Arturo                                       |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                  Grupo: 1BM3                                                            |\n";
+	cout<<"\t\t\t\t\t|                  Profesor: Huerta Trujillo Iliac                                        |\n";
+	cout<<"\t\t\t\t\t|                  Materia: Programación Orientada a Objetos                              |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|_________________________________________________________________________________________|\n";
+	cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+	system("pause");
+	system("cls");
+}
