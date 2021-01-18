@@ -1,0 +1,737 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//Declaración de funciones
+int ingresocontrasena();
+void bienvenida();
+void menu();
+void eleccion();
+void informacionHospital();
+void textocasa();
+void textoconsulta();
+void tectovoid();
+void escribirInfoPaciente();
+void leerInfoPaciente();
+
+
+/*Se crea la clase Paciente que se encargará de
+administrar los datos y funciones de cada paciente 
+que se registre*/
+class Paciente 
+{
+	private: //atributos de la clase Paciente
+		int edad;
+		int sintomas;
+		string nombre;
+		float temperatura;
+		int cuarto;
+		
+		
+	public: //metodos de la clase Paciente
+		
+		Paciente(); //constructor
+		void leer();
+		void set_edad(int);
+		int get_edad();
+		void set_nombre(string);
+		string get_nombre();
+		void set_temperatura(float);
+		float get_temperatura();
+		void set_cuarto(int);
+		int get_cuarto();
+		void set_sintomas(int);
+		int get_sintomas();
+					
+};
+
+/*Implementación de los métodos para la clase paciente,
+para estos métodos se utilizan getters y setters*/
+Paciente::Paciente()//Constructor de la clase Paciente
+{
+	
+}
+
+void Paciente::set_edad(int _edad) //Se inicializa el atributo edad con el método set
+{
+	edad=_edad;
+}
+
+void Paciente::set_nombre(string _nombre) //Se inicializa el atributo nombre con el método set
+{
+	nombre=_nombre;
+}
+
+void Paciente::set_temperatura(float _temperatura) //Se inicializa el atributo temperatura con el método set
+{
+	temperatura=_temperatura;
+}
+
+void Paciente::set_cuarto(int _cuarto) //Se inicializa el atributo cuarto con el método set
+{
+	cuarto=_cuarto;
+}
+
+void Paciente::set_sintomas(int _sintomas) //Se inicializa el atributo síntomas con el método set
+{
+	sintomas=_sintomas;
+}
+
+int Paciente::get_edad() //Este método obtiene lo que hay en el atributo edad y lo devuelve con return
+{
+	return edad;
+}
+
+string Paciente::get_nombre() //Este método obtiene lo que hay en el atributo nombre y lo devuelve con return
+{
+	return nombre;	
+}
+
+float Paciente::get_temperatura() //Este método obtiene lo que hay en el atributo temperatura y lo devuelve con return
+{
+	return temperatura;
+}
+
+int Paciente::get_cuarto() //Este método obtiene lo que hay en el atributo cuarto y lo devuelve con return
+{
+	return cuarto;
+}
+
+int Paciente::get_sintomas() //Este método obtiene lo que hay en el atributo sintomas y lo devuelve con return
+{
+	return sintomas;
+}
+
+/*Método leer de la clase paciente, esto lee los datos
+almacenados en cada atributo de la clase y los imprime*/	
+void Paciente::leer()
+{
+	cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+	cout<<"Nombre: "<<nombre<<endl;
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"Edad: "<<edad<<endl;
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"Temperatura: "<<temperatura<<endl;
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"Numero de cuarto: "<<cuarto<<endl;
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"Cantidad de Sintomas Mostrados: "<<sintomas<<endl;
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+}
+
+
+
+
+/*Se crea la clase Covid (hija) que hereda atributos de la clase Paciente*/
+class Consulta : public Paciente 
+{
+	private: //Atributos de la clase heredera
+	string descripcion_sintomas;
+			
+	public: //Métodos de la clase Consulta
+	Consulta(); //constructor
+	void set_descripcion(string);
+	string get_descripcion();	
+	void Alta();
+};
+
+Consulta::Consulta() //Constructor de la clase Consulta
+{
+	
+};
+
+void Consulta::Alta() //Metodo que muestra un mensaje para la alta en caso de que el área designada sea una consulta
+{
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"Los sintomas mostrados son: "<<descripcion_sintomas;
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+	cout<<"TIEMPO ESTIMADO PARA EL ALTA: PREGUNTAR AL DOCTOR A CARGO";
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+	cout<<"CONSULTA MEDICA ASIGNADA ";
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t"<<endl;
+}
+
+/*Método que recupera lo que se encuentra en la cadena string de la descripción síntomas 
+y la asigna a síntomas*/
+void Consulta::set_descripcion(string _descripcion) 
+{
+	descripcion_sintomas=_descripcion;
+}
+
+string Consulta::get_descripcion() //Método que regresa una cadena string para la obtencion de la descripción de sintomas
+{
+	return descripcion_sintomas;
+}
+
+
+
+
+/*Se crea la clase Covid (hija) que hereda atributos de la clase Paciente*/
+class Covid : public Paciente
+{
+	private: //Atributos de la clase heredera
+		string descripcion_sintomas;
+	
+	public: //Métodos de la clase Covid
+		Covid();//Constructor
+	
+		void set_descripcion(string);
+		string get_descripcion();		
+		void Alta();
+	
+};
+
+Covid::Covid() //Constructor de la clase Covid
+{
+	
+}
+
+void Covid::Alta() //Metodo que muestra un mensaje para la alta en caso de que el área designada sea Covid
+{
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"LOS SÍNTOMAS MOSTRADOS SON: "<<descripcion_sintomas;
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+	cout<<"ALTA NEGADA";
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+	cout<<"PACIENTE AISLADO";
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"TIEMPO ESTIMADO PARA EL ALTA: 15 DIAS"<<endl;
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"OBSERVACION 24/7";
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"EL PACIENTE PRESENTA OXIGENACION BAJA";
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t"<<endl;
+}
+
+/*Método que recupera lo que se encuentra en la cadena string de la descripción síntomas 
+y la asigna a síntomas*/
+void Covid::set_descripcion(string _descripcion)
+{
+	descripcion_sintomas=_descripcion;
+}
+
+string Covid::get_descripcion() //Método que regresa una cadena string para la obtencion de la descripción de sintomas
+{
+	return descripcion_sintomas;
+}
+
+
+/*Se crea la clase Casa (hija) que hereda atributos de la clase Paciente*/
+class Casa : public Paciente 
+{
+	private: //Atributos de la clase heredera
+		string descripcion_sintomas;
+	
+	public: //Métodos de la clase Casa
+		Casa();//Constructor
+	
+		void set_descripcion(string);
+		string get_descripcion();		
+		void Alta();
+};
+
+Casa::Casa() //Constructor de la clase Casa
+{
+	
+}
+
+/*Método que recupera lo que se encuentra en la cadena string de la descripción síntomas 
+y la asigna a síntomas*/
+void Casa::set_descripcion(string _descripcion) 
+{
+	descripcion_sintomas=_descripcion;
+}
+
+string Casa::get_descripcion() //Método que regresa una cadena string para la obtencion de la descripción de sintomas
+{
+	return descripcion_sintomas;
+}
+void Casa::Alta() //Metodo que muestra un mensaje para la alta en caso de que el área designada sea una consulta
+{
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"Los sintomas mostrados son: "<<descripcion_sintomas;
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+	cout<<"ALTA INMEDIATA";
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+	cout<<"PACIENTE REGRESA Y PERMANECE EN SU HOGAR CON CONSTANTE OBSERVACION  DESPUES DE REALIZAR LA PRUEBA DE COVID-19";
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"NO PRESENTA GRAVEDAD POR LOS SINTOMAS MOSTRADOS";
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t"<<endl;
+}
+
+/*Se crea un areeglo por cada área delimitando el espacio disponible por cada una,
+en este caso se asignaron 10*/
+Casa Dato1[10];
+Consulta Dato2[10];
+Covid Dato3[10];
+
+int auxa=0;
+int auxb=0;
+int auxc=0;
+int aux1=10;
+int aux2=10;
+int aux3=10;
+
+int main()
+{
+	setlocale(LC_ALL,""); //Para que se visualicen en las impresiones los acentos
+	
+	
+	/*Si la función ingresocontrasena regresa un 1 deja pasar a la siguiente parte del programa, 
+	dando acceso, en caso de no ser así, limpia los intentos anteriores y reinicia el conteo de intentos*/
+	if(ingresocontrasena()==1) 
+	{
+	bienvenida();
+	eleccion();
+	}
+}
+
+
+int ingresocontrasena() //Función para ingresar contraseña al inicio del programa
+{	
+	/*Declaración de variables para conteo y límite de intentos*/
+	int pass{0};
+	int intentos{3}; 
+	const int clavecorrecta{1234};
+	
+	do
+	{
+		/*Ingreso de la contraseña*/
+		cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+		cout<<"PARA ACCEDER";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"INGRESE LA CONTRASEÑA CORRECTA: ";
+		cin>>pass;
+		cout<<endl;
+		
+		/*Si la variable pass no coincide con la clave correcta entonces imprime el numero de intento 
+		y una advertencia, se suma en la variable intentos*/
+		if(pass!=clavecorrecta) 
+		{
+			cout<<"\t\t\t\t\t";
+			cout<<"CONTRASEÑA INCORRECTA"<<endl;
+			cout<<"\t\t\t\t\t";
+			cout<<"INTENTOS RESTANTES: "<<intentos-1<<endl;
+			intentos--;
+		}
+		
+		/*Se establece un límite de intentos y al llegar a es cantidad, 
+		se repite el proceso hasta ingresar la contraseña correcta*/
+		if(intentos==0)
+		{
+			cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+			cout<<"LÍMITE DE INTENTOS ALCANZADO, INTENTE DE NUEVO"<<endl;
+			intentos=3;
+			system("pause");
+			system("cls");
+		}
+	}
+	
+	/*Lo anterior se repite mientras la variable pass no sea igual a la clave correcta,
+	cuando es igual sale del ciclo y regresa un 1 al main dando paso a la siguiente parte
+	del programa*/
+	while (pass!=clavecorrecta);
+	system("cls");
+	cout<<"CONTRASEÑA CORRECTA\nACCEDIENDO..."<<endl;
+	return 1;
+}
+
+
+/*Función que desplega o imprime un mensaje de Bienvenida al usuario*/
+void bienvenida()
+{
+	cout<<"\t\t\t\t\t _________________________________________________________________________________________ \n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                          		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                     BIENVENIDOS AL                                      |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                                     HOSPITAL COVID                                      |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                               DONDE ADMINISTRAMOS A CADA                                |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                           UNO DE NUESTROS PACIENTES Y CON LA                            |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                    ORGANIZACIÓN QUE CUALQUIER HOSPITAL DESEARÍA TENER                   |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|_________________________________________________________________________________________|\n";
+	cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+	system("Pause");
+	system("cls");
+}
+
+/*Función que imprime el menú con las diferentes operaciones disponibles*/ 
+void menu()
+{
+	cout<<"\t\t\t\t\t _________________________________________________________________________________________ \n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                          		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                      ELIJA UNA OPCIÓN (1-4)                         		          |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                      1. INFORMACIÓN DEL HOSPITAL                                        |\n";
+	cout<<"\t\t\t\t\t|                      2. REGISTRO DE PACIENTE                                            |\n";
+	cout<<"\t\t\t\t\t|                      3. HISTORIAL DEL PACIENTE                                          |\n";
+	cout<<"\t\t\t\t\t|                      4. FIN DEL PROGRAMA                                                |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|_________________________________________________________________________________________|\n";
+	cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+}
+
+/*Función que sirve para ingresar el número de la operación que se desea emplear 
+mediante un switch*/ 
+void eleccion()
+{
+	int operacion{0};
+	
+	do
+	{
+	menu();
+	cout<<"Seleccione la operación que desea ejecutar: ";
+	cin>>operacion;
+	cout<<endl;
+	system("cls");
+
+	switch(operacion)
+		{
+			case 1: 
+					informacionHospital(); //Invoca a la función con la información del proyecto en caso de escoger el número 1
+					break;
+			case 2: 
+					escribirInfoPaciente(); //Invoca a la funcion escribirInfoPaciente para ingresar los datos de un paciente nuevo
+					break;
+			case 3:
+					
+					leerInfoPaciente(); //Invoca a la funcion leerInfoPaciente para ingresar los datos de un paciente nuevo
+					break;
+			case 4:
+					break; //Si se escoge el 4 se termina el programa automaticamente
+		}
+	}
+	while(operacion!=4);
+}
+
+/*Función que imprime los detalles del proyecto*/
+void informacionHospital()
+{
+	cout<<"\t\t\t\t\t _________________________________________________________________________________________ \n";
+	cout<<"\t\t\t\t\t|                                           		                                  |\n";
+	cout<<"\t\t\t\t\t|                     PROYECTO ADMINISTRACIÓN HOSPITAL COVID                      	  |\n";
+	cout<<"\t\t\t\t\t|                                               		                          |\n";
+	cout<<"\t\t\t\t\t|                  Creado y Desarrollado por:                 		                  |\n";
+	cout<<"\t\t\t\t\t|                  - Archunda Bazán Aarón Antonio   		                          |\n";
+	cout<<"\t\t\t\t\t|                  - Guerrero Vélez Eliseo Milton                                         |\n";
+	cout<<"\t\t\t\t\t|                  - Hernández Vázquez César Arturo                                       |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|                  Grupo: 1BM3                                                            |\n";
+	cout<<"\t\t\t\t\t|                  Profesor: Huerta Trujillo Iliac                                        |\n";
+	cout<<"\t\t\t\t\t|                  Materia: Programación Orientada a Objetos                              |\n";
+	cout<<"\t\t\t\t\t|                                                                                         |\n";
+	cout<<"\t\t\t\t\t|_________________________________________________________________________________________|\n";
+	cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
+	system("pause");
+	system("cls");
+}
+
+/*Función que sirve para ingresar los datos del paciente 
+en caso de solo presentar de 0 a 2 síntomas*/
+void textocasa()
+{
+	/*Se declaran variables a,b,c y d para regustrar los datos del paciente y guardarlos*/
+	string a,e;
+	int b;
+	float c;
+	int d;
+	
+		cout<<"\t\t\t\t\t\n\n\n\t\t\t\t\t";
+		cout<<"INTRODUZCA EL NOMBRE DEL PACIENTE: ";
+		cin>>a;
+		
+		do //Do-While que sirve para limitar el rango de entrada para la edad 
+		{
+			cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+			cout<<"RANGO VÁLIDO DE 0 A 100 AÑOS";
+			cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+			cout<<"INTRODUZCA SU EDAD: ";
+			cin>>b;	
+			cout<<endl;	
+		}while(b<1||b>100);
+
+		do //Do-While que sirve para limitar el rango de entrada para la temperatura
+		{
+			cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+			cout<<"RANGO VÁLIDO DE 35°C a 45°C";
+			cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+			cout<<"INTRODUZCA LA TEMPERATURA REGISTRADA: ";
+			cin>>c;	
+			cout<<endl;
+		}while(c<35 || c>45);
+		
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"INTRODUZCA EL NÚMERO DE CUARTO DE PRUEBAS QUE SE LE ASIGNARÁ AL PACIENTE: ";
+		cin>>d;
+		
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"INTRODUZCA LOS SÍNTOMAS: ";
+		cin>>e;
+		cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+		cout<<"GUARDANDO...";
+		cout<<endl;
+	
+		/*En el arreglo de Dato 1 que es para pacientes que presentan de 0 a 2 síntomas
+		se utiliza la variable auxa para asignar el espacio del arreglo en donde
+		el método set_x guardará los datos para esta área*/
+		Dato1[auxa].set_nombre(a);
+		Dato1[auxa].set_edad(b);
+		Dato1[auxa].set_temperatura(c);	
+		Dato1[auxa].set_cuarto(d);
+		Dato1[auxa].set_descripcion(e);	
+		system("pause");
+		system("cls");
+}
+
+/*Función que sirve para ingresar los datos del paciente 
+en caso de solo presentar 3 síntomas*/
+void textoconsulta()
+{
+	//Se declaran variables a,b,c y d para regustrar los datos del paciente y guardarlos  
+	string a,e;
+	int b;
+	float c;
+	int d;
+	
+	cout<<"\t\t\t\t\t\n\n\n\t\t\t\t\t";
+	cout<<"INTRODUZCA EL NOMBRE DEL PACIENTE: ";
+	cin>>a;
+	do //Do-While que sirve para limitar el rango de entrada para la edad
+	{
+		cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+		cout<<"RANGO VÁLIDO DE 0 A 100 AÑOS";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"INTRODUZCA SU EDAD: ";
+		cin>>b;		
+	}while(b<1 || b>100);
+
+	do //Do-While que sirve para limitar el rango de entrada para la temperatura
+	{
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"RANGO VÁLIDO DE 35°C a 45°C";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"INTRODUZCA LA TEMPERATURA REGISTRADA: ";
+		cin>>c;	
+	}while(c<35 || c>45);
+	
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"INTRODUZCA EL NÚMERO DE CUARTO QUE SE LE ASIGNARÁ AL PACIENTE: ";
+	cin>>d;
+
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"INTRODUZCA LOS SÍNTOMAS: ";
+	cin>>e;
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+	cout<<"GUARDANDO...";
+	cout<<endl;
+	
+	/*En el arreglo de Dato 2 que es para pacientes con 3 síntomas
+	se utiliza la variable auxb para asignar el espacio del arreglo en donde
+	el método set_x guardará los datos para esta área*/
+	Dato2[auxb].set_nombre(a);
+	Dato2[auxb].set_edad(b);
+	Dato2[auxb].set_temperatura(c);	
+	Dato2[auxb].set_cuarto(d);
+	Dato2[auxb].set_descripcion(e);
+	system("pause");
+	system("cls");
+}
+
+/*Función que sirve para ingresar los datos del paciente 
+en caso de solo presentar 4 síntomas*/
+void textocovid()
+{
+	//Se declaran variables a,b,c y d para regustrar los datos del paciente y guardarlos
+	string a,e;
+	int b;
+	float c;
+	int d;
+	
+	cout<<"\t\t\t\t\t\n\n\n\t\t\t\t\t";
+	cout<<"INTRODUZCA EL NOMBRE DEL PACIENTE: ";
+	cin>>a;
+	do //Do-While que sirve para limitar el rango de entrada para la edad
+	{
+		cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+		cout<<"RANGO VÁLIDO DE 0 A 100 AÑOS";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"INTRODUZCA SU EDAD: ";
+		cin>>b;		
+	}while(b<1 || b>100);
+
+	do //Do-While que sirve para limitar el rango de entrada para la temperatura
+	{
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"RANGO VÁLIDO DE 35°C a 45°C";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"INTRODUZCA LA TEMPERATURA REGISTRADA: ";
+		cin>>c;	
+	}while(c<35 || c>45);
+	
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"INTRODUZCA EL NÚMERO DE CUARTO QUE SE LE ASIGNARÁ AL PACIENTE: ";
+	cin>>d;
+
+	cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+	cout<<"INTRODUZCA LOS SÍNTOMAS: ";
+	cin>>e;
+	cout<<"\t\t\t\t\t\n\n\t\t\t\t\t";
+	cout<<"GUARDANDO...";
+	cout<<endl;
+	
+	/*En el arreglo de Dato 3 que es para pacientes con 4 o más síntomas
+	se utiliza la variable auxc para asignar el espacio del arreglo en donde
+	el método set_x guardará los datos para esta área*/
+	Dato3[auxc].set_nombre(a);
+	Dato3[auxc].set_edad(b);
+	Dato3[auxc].set_temperatura(c);	
+	Dato3[auxc].set_cuarto(d);
+	Dato3[auxc].set_descripcion(e);
+	system("pause");
+	system("cls");
+}
+
+/*Función que se utiliza para Introducir el número de
+síntomas para asignar un área en específico, además de que 
+también selecciona el número de cama en el que se quiere ingresar al paciente
+en esta área*/
+void escribirInfoPaciente()
+{
+	int a; //Variable para el número de síntomas
+	do //Do-While que sirve para validar la entrada del número de síntomas
+	{
+		cout<<"\t\t\t\t\t\n\n\n\t\t\t\t\t";
+		cout<<"INTRODUZCA EL NÚMERO DE SINTOMAS PARA ASIGNAR ÁREA: ";
+		cin>>a;	
+		cout<<endl;
+	}while(a<0||a>4);
+
+	if(a==0||a==1||a==2) //Si el número de síntomas es 0, 1 ó 2 entonces...
+	{
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"ES NECESARIO REALIZAR UNA PRUEBA PARA DESCARTAR COVID-19";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"TENEMOS "<<aux1;
+		cout<<" ESPACIOS PARA PRUEBAS DISPONIBLES, POR FAVOR SELECCIONE";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"EL NÚMERO DE ESPACIO PARA REALIZAR LA PRUEBA";
+		cout<<endl;
+		
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"SELECCIONE EL NÚMERO DE ESPACIO QUE OCUPARA EL PACIENTE: ";
+		cin>>auxa;
+		cout<<endl;
+		auxa--;
+		Dato1[auxa].set_sintomas(a); //En el valor auxa del arreglo Dato1 se guardarán los síntomas que el método set obtenga
+		textocasa(); //Se invoca la función para el texto del área asignada		
+		aux1--;
+	}
+	else if(a==3) //Si el número de síntomas es 3...
+	{
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"TENEMOS "<<aux2;
+		cout<<" CAMAS DISPONIBLES, POR FAVOR SELECCIONE";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"EL NÚMERO DE CAMA QUE DESEA ASIGNARLE AL PACIENTE";
+		cout<<endl;
+		
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"SELECCIONE EL NÚMERO DE CAMA QUE OCUPARA EL PACIENTE: ";
+		cin>>auxb;
+		auxb--;
+		
+		Dato2[auxb].set_sintomas(a); //En el valor auxb del arreglo Dato2 se guardarán los síntomas que el método set obtenga
+		textoconsulta(); //Se invoca la función para el texto del área asignada
+		aux2--;
+	}
+	else if(a>=4) //Si el número de síntomas es 4 o más entonces...
+	{
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"TENEMOS "<<aux3;
+		cout<<" CAMAS DISPONIBLES, POR FAVOR SELECCIONE";
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"EL NÚMERO DE CAMA QUE DESEA ASIGNARLE AL PACIENTE";
+		cout<<endl;
+		
+		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
+		cout<<"SELECCIONE EL NÚMERO DE CAMA QUE OCUPARA EL PACIENTE: ";
+		cin>>auxc;
+		auxc--;
+		
+		
+		Dato3[auxc].set_sintomas(a); //En el valor auxc del arreglo Dato3 se guardarán los síntomas que el método set obtenga
+		textocovid(); //Se invoca la función para el texto del área asignada
+		aux3--;
+	}
+}
+
+/*Función que al ser invocada pregunta por la cantidad de síntomas para dirigirse a un área 
+en específico y después preguntar el número de la cama para mostrar los detalles del 
+paciente que se esta buscando*/
+void leerInfoPaciente()
+{
+	int a; //Variable para el número de síntomas
+	do //Do-While que sirve para validar la entrada del número de síntomas
+	{
+		cout<<"\t\t\t\t\t\n\n\n\t\t\t\t\t";
+		cout<<"INTRODUZCA EL NÚMERO DE SINTOMAS PARA BUSCAR POR ÁREA: ";
+		cin>>a;
+		cout<<endl;	
+	} while(a<0||a>4);
+
+	if(a==0||a==1||a==2) //Si el número de síntomas es 0, 1 ó 2 entonces...
+	{
+		cout<<"\t\t\t\t\t\n\n\n\t\t\t\t\t";
+		cout<<"SELECCIONE EL ESPACIO DE PRUEBAS QUE DESEA VISUALIZAR: ";
+		cin>>auxa;
+		cout<<endl;
+		auxa--;
+		Dato1[auxa].leer(); //Al arreglo Dato1 en el espacio auxa se le aplica el método Leer
+		Dato1[auxa].Alta(); //Al arreglo Dato1 en el espacio auxa se le aplica el método Alta
+		system("pause");
+		system("cls");
+	}
+	else if(a==3) //Si el número de síntomas es 3...
+	{
+		cout<<"\t\t\t\t\t\n\n\n\t\t\t\t\t";
+		cout<<"SELECCIONE LA CAMA QUE DESEA VISUALIZAR: ";
+		cin>>auxb;
+		cout<<endl;
+		auxb--;
+		Dato2[auxb].leer(); //Al arreglo Dato2 en el espacio auxb se le aplica el método Leer
+		Dato2[auxb].Alta(); //Al arreglo Dato2 en el espacio auxb se le aplica el método Alta
+		system("pause");
+		system("cls");
+	}
+	else if(a>=4) //Si el número de síntomas es 4 o más entonces...
+	{
+		cout<<"\t\t\t\t\t\n\n\n\t\t\t\t\t";
+		cout<<"SELECCIONE LA CAMA QUE DESEA VISUALIZAR: ";
+		cin>>auxc;
+		auxc--;
+		cout<<endl;
+		Dato3[auxc].leer(); //Al arreglo Dato3 en el espacio auxc se le aplica el método Leer
+		Dato3[auxc].Alta(); //Al arreglo Dato3 en el espacio auxc se le aplica el método Alta
+		system("pause");
+		system("cls");
+	}
+}
