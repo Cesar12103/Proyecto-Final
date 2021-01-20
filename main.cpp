@@ -14,7 +14,7 @@ void eleccion();
 void informacionHospital();
 void textocasa();
 void textoconsulta();
-void tectovoid();
+void textocovid();
 void escribirInfoPaciente();
 void leerInfoPaciente();
 
