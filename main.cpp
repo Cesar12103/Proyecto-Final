@@ -19,7 +19,8 @@ void escribirInfoPaciente();
 void leerInfoPaciente();
 
 
-
+/*Método leer de la clase paciente, esto lee los datos
+almacenados en cada atributo de la clase y los imprime*/
 void Paciente::leer()
 {
 	cout<<"\t\t\t\t\t\n\n\n\n\t\t\t\t\t";
@@ -112,7 +113,7 @@ int ingresocontrasena() //Función para ingresar contraseña al inicio del progr
 	/*Declaración de variables para conteo y límite de intentos*/
 	int pass{0};
 	int intentos{3}; 
-	const int clavecorrecta{45569};
+	const int clavecorrecta{1234};
 	
 	do
 	{
@@ -295,7 +296,7 @@ void textocasa()
 			cout<<"INTRODUZCA LA TEMPERATURA REGISTRADA: ";
 			cin>>c;	
 			cout<<endl;
-		}while(c<35 || c>45);
+		}while(c<35||c>45);
 		
 		cout<<"\t\t\t\t\t\n\t\t\t\t\t";
 		cout<<"INTRODUZCA EL NÚMERO DE CUARTO DE PRUEBAS QUE SE LE ASIGNARÁ AL PACIENTE: ";
@@ -553,3 +554,4 @@ void leerInfoPaciente()
 		system("cls");
 	}
 }
+
